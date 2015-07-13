@@ -282,4 +282,5 @@ sphinxgallery_conf = {
         'numpy': 'http://docs.scipy.org/doc/numpy-1.9.1'},
     'examples_dir'   : ['../examples', '../tutorials'],
     'gallery_dir'    : ['auto_examples', 'tutorials'],
+    'use_mayavi': True,
     }
