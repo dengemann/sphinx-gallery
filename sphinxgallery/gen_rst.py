@@ -434,7 +434,12 @@ def generate_file_rst(fname, target_dir, src_dir, gallery_conf):
     ref_fname = example_file.replace(os.path.sep, '_')
     example_rst = """\n\n.. _sphx_glr_{0}:\n\n""".format(ref_fname)
 
-    if not fname.startswith('plot'):
+    exec_script = fname.startswith('plot')
+    use_mayavi = gallery_conf.get('use_mayavi', False)
+    if not use_mayavi and any('mayavi' in bl[2] for bl in script_blocks):
+        exec_script = False
+
+    if not exec_script:
         convert_func = dict(code=codestr2rst, text=ast.literal_eval)
         for blabel, bcontent in script_blocks:
             example_rst += convert_func[blabel](bcontent)+'\n'
