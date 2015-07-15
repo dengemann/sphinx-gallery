@@ -232,6 +232,8 @@ def save_figures(image_path, fig_count, gallery_conf):
         current_fig = image_path.format(fig_count + fig_mngr.num)
         fig.savefig(current_fig, **kwargs)
         figure_list.append(current_fig)
+        print(len(figure_list))
+
 
     if gallery_conf.get('use_mayavi', False):
         from mayavi import mlab
@@ -363,7 +365,7 @@ def execute_script(code_block, example_globals, image_path, fig_count, src_file,
     cwd = os.getcwd()
     # Redirect output to stdout and
     orig_stdout = sys.stdout
-
+    figure_list = []
     try:
         # First CD in the original example dir, so that any file
         # created by the example get created in this directory
